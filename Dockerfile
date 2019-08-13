@@ -4,4 +4,4 @@ RUN apk add xinput
 
 COPY ./reset.sh ./
 
-ENTRYPOINT reset.sh
+ENTRYPOINT ./reset.sh
