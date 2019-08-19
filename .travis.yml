@@ -12,7 +12,7 @@ env:
   - secure: o5jmGGqbPbVWumRB08seardb25ZvdPrgnEIicisprx8sXWlBnelO7ILHk2rfszVjylVrUiCeUqet8mVNK1Ev05ARe86lNghIdyixPaqbPF4sI8WgQdh3z4PBN+AEt9H77Kkkv01PeSJz7DKtyone3kKXHf5VH0Y+1PrZCqHqMEV6z4eRmmDz+loWRuaLnU1ohow/duWo4rNuR3OT9nz+n26AdlOVMOUahVxV3OjuADxu+uZtQLxaCe0PYFvtPlX5dUfqLlDP8VJEnNcegocKbPUqOXjiHP8S/A421lgoiK/KVkFCB+WerJ9wxe2xcSqSgb4qCHsoOkWiyC/LqnXWPa/WjEeHtEBuj0f77CG1l9DDqWAiSIp7hOhiQFLwoIhSw6kr9AIkYutAVarLset5nTl7oVnZxf90UQ5PdG6kaPc7Zd9EFPJWF9Hb4N3uz/lmnX1dIXgB6TGWSUOKKuSsG7bF9R3+WMYu6Ioy9HkIShHau8NsaAm2pR/kPSq/mGC6/QF+1ngOvnWw5Uy2h0v0AaW8yDqnZ8WJ7phwksQeNtoFJJabr1FJJc798DxfAsEkTOmgpll832TEXeP7DhP22ulP6pKo7aQTjuqMQu4Gdf6o21SUQXOcCNs6c89BAwLpunpPmu3ULNT8UMKKbFNLh311tqgkL52gqgWZmnGPOtw= #DOCKER_PASS
 before_install:
 - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $(echo $TRAVIS_BRANCH | tr / _); fi`
 - |
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
